@@ -41,7 +41,7 @@
                 $conexion = mysqli_connect($host,$user,$password,$bd)
                 or die ("No se puede conectar con el servidor");
                     
-                $instruccion = "delete from usuario WHERE username = '$this_usuario'";
+                $instruccion = "delete from usuario WHERE id_usr = $this_usuario";
         
                 $consulta = mysqli_query ($conexion, $instruccion)
                 or die ("Fallo en la consulta insertar usuario-rol");
