@@ -44,9 +44,26 @@
                 $instruccion = "delete from usuario WHERE id_usr = $this_usuario";
         
                 $consulta = mysqli_query ($conexion, $instruccion)
-                or die ("Fallo en la consulta insertar usuario-rol");
+                or die ("Fallo en la consulta eliminar usuario");
+                mysqli_close ($conexion); 
+                    /////   /////////////////////
+                $conexion = mysqli_connect($host,$user,$password,$bd)
+                or die ("No se puede conectar con el servidor");
+                    
+                $instruccion = "delete from dron WHERE id_usr = $this_usuario";
+        
+                $consulta = mysqli_query ($conexion, $instruccion)
+                or die ("Fallo al eliminar los drones del usuario");
                 mysqli_close ($conexion); 
                 
+                $conexion = mysqli_connect($host,$user,$password,$bd)
+                or die ("No se puede conectar con el servidor");
+                    
+                $instruccion = "delete from parcelas WHERE id_usr = $this_usuario";
+        
+                $consulta = mysqli_query ($conexion, $instruccion)
+                or die ("Fallo al eliminar las parcelas del usuario");
+                mysqli_close ($conexion); 
             }
 
 

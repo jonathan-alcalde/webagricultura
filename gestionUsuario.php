@@ -57,8 +57,11 @@
                 Email:
                 <input type = "text" name="email">
                 <br>
-                Contraseña:
+                Contraseña Actual:
                 <input type = "text" name="contrasena">
+                <br>
+                Nueva Contraseña:
+                <input type = "text" name="nuevacontrasena">
                 <br>
                 <input type="submit" value="actualizar" name="actualizar"/>
                 <input type="submit" value="cancelar" name="cancelar"/>
@@ -75,6 +78,7 @@
                 $apellidos = $_POST['apellidos'];
                 $email = $_POST['email'];
                 $contrasena = $_POST['contrasena'];
+                $ncontrasena = $_POST['ncontrasena'];
                 
                 if($_POST['usuario'] == ""){
                 $correcto = FALSE;

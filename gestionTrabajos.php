@@ -9,7 +9,7 @@ session_start();
     <body>
         <?php
             include 'lib/misfunciones.php';
-            function parcela_registrada($user,$host,$password,$database,$nparcela){
+            function trabajo_registrado($user,$host,$password,$database,$nparcela){
             $conexion = mysqli_connect($host, $user, $password, $database) or die("No se puede conectar a la base de datos");
             $instruccion = "SELECT * FROM parcelas WHERE nparcela = '$nparcela'";
             $consulta = mysqli_query ($conexion, $instruccion)
@@ -33,9 +33,9 @@ session_start();
             
         ?>   
     
-        <h1>Añadir Parcela-</h1>
-        <FORM ACTION="gestionParcelas.php" method="post">
-                nparcela: <input type="text" name="nparcela">
+        <h1>Añadir Trabajo-</h1>
+        <FORM ACTION="gestionTrabajos.php" method="post">
+                Nombre del trabajo: <input type="text" name="nombre_trabajo">
                 <br>
                 municipio: <input type="text" name="municipio">
                 <br>

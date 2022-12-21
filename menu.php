@@ -37,6 +37,10 @@ session_start();
             $_SESSION['usuario_valido'] = $usuario;
             header("location:gestionParcelas.php") or die('died');
         }
+        else if(isset($_REQUEST['gestiontrabajos'])){
+            $_SESSION['usuario_valido'] = $usuario;
+            header("location:gestionTrabajos.php") or die('died');
+        }
         else if(isset($_REQUEST['gestionrolusuario'])){
             $_SESSION['usuario_valido'] = $usuario;
             header("location:gestionUsuarioRoles.php") or die('died');
@@ -68,6 +72,10 @@ session_start();
                     ?>
                         <FORM ACTION='menu.php' method='post'>
                             <input type='submit' name=gestionparcelas value='GESTIÓN DE PARCELAS'>
+                        </FORM>
+
+                        <FORM ACTION='menu.php' method='post'>
+                            <input type='submit' name=gestiontrabajos value='GESTIÓN DE TRABAJOS'>
                         </FORM>
                     <?php
                 }

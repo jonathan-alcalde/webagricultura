@@ -16,7 +16,7 @@ session_start();
             or die ("Fallo en la consulta buscar dron");
             $nfilas = mysqli_num_rows ($consulta);
             if($nfilas > 0){
-                echo "Ya existe un dorn con ese nombre";
+                echo "<p>Ya existe un dron con ese nombre</p>";
                 mysqli_close ($conexion);
                 return FALSE;
             }

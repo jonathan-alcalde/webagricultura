@@ -103,16 +103,14 @@
                     or die (" ".mysqli_error($conexion));
                     while($fila = mysqli_fetch_array($consulta)){
                         $this_id = $fila['id_usr'];
+                        $this_id = intval($this_id,$base = 10);
                         $instruccion = "insert into usuario_rol (id_usr,id_rol) values ".
-                        "$this_id,2";
+                        "($this_id,2)";
 
                     $consulta = mysqli_query ($conexion, $instruccion)
                     or die (" ".mysqli_error($conexion)." Fallo en la consulta insertar rol usuario ");
                     mysqli_close ($conexion); 
                     
-                    $conexion = mysqli_connect($host,$user,$password,$bd)
-                    or die ("No se puede conectar con el servidor");
-                
                     }
                     mysqli_close ($conexion); 
                 }
