@@ -5,7 +5,6 @@
     </head>
     <body>
         <?php
-            include 'lib/misfunciones.php';
             function registrado($user,$host,$password,$database,$usuario,$contrasena){
             $conexion = mysqli_connect($host, $user, $password, $database) or die("No se puede conectar a la base de datos");
             $instruccion = "SELECT * FROM usuario WHERE username = '$usuario' AND contrasena = '$contrasena'";
@@ -39,9 +38,6 @@
                 Nombre:
                 <input type = "text" name="nombre">
                 <br>
-                Apellidos:
-                <input type = "text" name="apellidos">
-                <br>
                 Email:
                 <input type = "text" name="email">
                 <br>
@@ -51,7 +47,6 @@
                 <input type="submit" value="Añadir" name="anadir"/>
                 <input type="submit" value="cancelar" name="cancelar"/>
                 <?php
-                echo miretorno($_POST);
             if(isset($_POST['anadir'])){
                 $correcto = TRUE;
                 
@@ -59,7 +54,6 @@
                 $usuario = $_POST['usuario'];
                 $dni = $_POST['dni'];
                 $nombre = $_POST['nombre'];
-                $apellidos = $_POST['apellidos'];
                 $email = $_POST['email'];
                 $contrasena = $_POST['contrasena'];
                 
@@ -84,35 +78,35 @@
                 $correcto = registrado($user, $host, $password, $bd, $usuario, $contrasena);
                 if($correcto == TRUE){
             
-                    $conexion = mysqli_connect($host,$user,$password,$bd)
+                    $conexion1 = mysqli_connect($host,$user,$password,$bd)
                     or die ("No se puede conectar con el servidor");
 
-                    $instruccion = "insert into usuario (username,nombre,apellidos,dni,email,contrasena) values "
-                    . "('$usuario','$nombre','$apellidos','$dni','$email','$contrasena')";
+                    $instruccion1 = "insert into usuario (username,nombre,dni,email,contrasena) values "
+                    . "('$usuario','$nombre','$dni','$email','$contrasena')";
 
-                    $consulta = mysqli_query ($conexion, $instruccion)
-                    or die (" ".mysqli_error($conexion)." Fallo en la consulta insertar usuario ");
-                    mysqli_close ($conexion); 
+                    $consulta1 = mysqli_query ($conexion1, $instruccion1)
+                    or die (" ".mysqli_error($conexion1)." Fallo en la consulta insertar usuario ");
+                    mysqli_close ($conexion1); 
                     
-                    $conexion = mysqli_connect($host,$user,$password,$bd)
+                    $conexion2 = mysqli_connect($host,$user,$password,$bd)
                     or die ("No se puede conectar con el servidor");
 
-                    $instruccion = "SELECT * FROM usuario WHERE username = '$usuario'"
+                    $instruccion2 = "SELECT * FROM usuario WHERE username = '$usuario'"
                     or die("");
-                    $consulta = mysqli_query ($conexion, $instruccion)
-                    or die (" ".mysqli_error($conexion));
-                    while($fila = mysqli_fetch_array($consulta)){
+                    $consulta2 = mysqli_query ($conexion2, $instruccion2)
+                    or die (" ".mysqli_error($conexion2));
+                    
+                    while($fila = mysqli_fetch_array($consulta2)){
                         $this_id = $fila['id_usr'];
                         $this_id = intval($this_id,$base = 10);
-                        $instruccion = "insert into usuario_rol (id_usr,id_rol) values ".
-                        "($this_id,2)";
+                        $instruccion3 = "insert into usuario_rol (id_usuario,id_rol) values ".
+                        "($this_id,4)";
 
-                    $consulta = mysqli_query ($conexion, $instruccion)
-                    or die (" ".mysqli_error($conexion)." Fallo en la consulta insertar rol usuario ");
-                    mysqli_close ($conexion); 
+                    $consulta3 = mysqli_query ($conexion2, $instruccion3)
+                    or die (" ".mysqli_error($conexion2)." Fallo en la consulta insertar rol usuario ");
+                    mysqli_close ($conexion2); 
                     
                     }
-                    mysqli_close ($conexion); 
                 }
             }
             ?>
