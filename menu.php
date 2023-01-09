@@ -67,7 +67,7 @@ session_start();
                     <?php
                 }
 
-                if($mostrado_parcelas == FALSE && $fila['id_rol'] == 2 || $mostrado_parcelas == FALSE && $fila['id_rol'] == 1){
+                if($mostrado_parcelas == FALSE && $fila['id_rol'] == 2 || $mostrado_parcelas == FALSE && $fila['id_rol'] == 1 && $fila['id_rol'] == 3){
                     $mostrado_parcelas = TRUE;
                     ?>
                         <FORM ACTION='menu.php' method='post'>

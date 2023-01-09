@@ -32,7 +32,26 @@
             mysqli_close ($conexion); 
             
             }
-            
+        
+            if(isset($_POST['AsignarRol'])){
+                $id_usuario = $_REQUEST['n_usuario'];
+                $id_rol = $_REQUEST['rol'];
+                foreach ($id_usuario as $usuario)
+                $this_usuario = $usuario;
+                
+                foreach ($id_rol as $rol)
+                $this_rol = $rol;
+                $conexion = mysqli_connect($host,$user,$password,$bd)
+                or die ("No se puede conectar con el servidor");
+                    
+                $instruccion = "DELETE FROM usuario_rol WHERE "
+                ."id_usr = $this_usuario AND id_rol = $this_rol";
+        
+                $consulta = mysqli_query ($conexion, $instruccion)
+                or die ("Fallo al eliminar usuario-rol");
+                mysqli_close ($conexion); 
+                
+            }
             if(isset($_POST['borrar'])){
                 $id_usuario = $_REQUEST['n_usuario'];
                 foreach ($id_usuario as $usuario)
@@ -119,6 +138,38 @@
         ?>
         </select>
     <input type="submit" value="Asignar Rol" name="AsignarRol">
+    <input type="submit" value="cancelar" name="cancelar">
+</form>
+<form action="gestionUsuarioRoles.php" method="POST">
+            <h3>Eliminar Roles a Usuario</h3>
+            Nombre del Usuario: <select name="n_usuario[]">
+                <?php
+                $conexion = mysqli_connect($host, $user, $password, $bd) or die("No se puede conectar a la base de datos");
+                $instruccion = "SELECT id_usr , nombre FROM usuario";
+                $consulta = mysqli_query ($conexion, $instruccion)
+                or die ("Fallo en la consulta buscar usuario");
+                while($fila = mysqli_fetch_array($consulta)){
+                    ?><option value="<?php echo $fila['id_usr'] ?>"><?php echo $fila['nombre'] ?>
+            
+            <?php
+                }
+                mysqli_close($conexion);
+                ?>
+            </select>
+            Rol que se quiere eliminar:<select name="rol[]">
+                <?php
+                $conexion = mysqli_connect($host, $user, $password, $bd) or die("No se puede conectar a la base de datos");
+                $instruccion = "SELECT * FROM roles";
+                $consulta = mysqli_query ($conexion, $instruccion)
+                or die ("Fallo en la consulta buscar usuario");
+                while($fila = mysqli_fetch_array($consulta)){
+                ?><option value="<?php echo $fila['id_rol'] ?>"><?php echo $fila['nombre_rol'] ?>
+        <?php
+        }
+        mysqli_close($conexion);
+        ?>
+        </select>
+    <input type="submit" value="Eliminar Rol" name="eliminarrol">
     <input type="submit" value="cancelar" name="cancelar">
 </form>
 

@@ -46,7 +46,7 @@ session_start();
                 Fichero json 
                 <INPUT TYPE="hidden" name="max_file_size" value="10240000">
                 <input TYPE="file" size="44" name="geojson">
-                
+                <br>
                 <input type="submit" value="Añadir" name="anadir"/>
                 <input type="submit" value="cancelar" name="cancelar"/>
                 <?php

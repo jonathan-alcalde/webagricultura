@@ -99,7 +99,7 @@
                     while($fila = mysqli_fetch_array($consulta2)){
                         $this_id = $fila['id_usr'];
                         $this_id = intval($this_id,$base = 10);
-                        $instruccion3 = "insert into usuario_rol (id_usuario,id_rol) values ".
+                        $instruccion3 = "insert into usuario_rol (id_usr,id_rol) values ".
                         "($this_id,4)";
 
                     $consulta3 = mysqli_query ($conexion2, $instruccion3)
