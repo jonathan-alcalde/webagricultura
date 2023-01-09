@@ -66,7 +66,6 @@
                 <input type="submit" value="actualizar" name="actualizar"/>
                 <input type="submit" value="cancelar" name="cancelar"/>
                 <?php
-                echo miretorno($_POST);
             if(isset($_POST['anadir'])){
                 $correcto = TRUE;
                 $string_campos = "(";

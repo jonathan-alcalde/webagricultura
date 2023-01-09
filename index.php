@@ -50,7 +50,7 @@ session_start();
                 }
             }
         ?>
-        <h1>APLICACIÓN EXAMEN PRIMERA EVALUACIÓN</h1>
+        <h1>APLICACIÓN AGRICULTURA</h1>
         <form action="index.php" method="POST">
             USUARIO :     <input type="text" name="usuario"/>
                 <br>

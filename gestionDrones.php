@@ -43,7 +43,6 @@ session_start();
                 <input type="submit" value="Añadir" name="anadir"/>
                 <input type="submit" value="cancelar" name="cancelar"/>
                 <?php
-                echo miretorno($_POST);
             if(isset($_POST['anadir'])){
                 $correcto = TRUE;
                 
