@@ -41,6 +41,10 @@ session_start();
             $_SESSION['usuario_valido'] = $usuario;
             header("location:gestionTrabajos.php") or die('died');
         }
+        else if(isset($_REQUEST['gestiontrabajodron'])){
+            $_SESSION['usuario_valido'] = $usuario;
+            header("location:gestionpilotoTrabajos.php") or die('died');
+        }
         else if(isset($_REQUEST['gestionrolusuario'])){
             $_SESSION['usuario_valido'] = $usuario;
             header("location:gestionUsuarioRoles.php") or die('died');
@@ -62,12 +66,15 @@ session_start();
                 $mostrado_drones = TRUE;
                 ?>
                         <FORM ACTION='menu.php' method='post'>
-                            <input type='submit'name=gestiondron value='GESTIÓN DE DRONES'>
+                            <input type='submit' name=gestiondron value='GESTIÓN DE DRONES'>
+                        </FORM>
+                        
+                        <FORM ACTION='menu.php' method='post'>
+                            <input type='submit' name=gestiontrabajodron value='VER TRABAJOS'>
                         </FORM>
                     <?php
                 }
-
-                if($mostrado_parcelas == FALSE && $fila['id_rol'] == 2 || $mostrado_parcelas == FALSE && $fila['id_rol'] == 1 && $fila['id_rol'] == 3){
+                if($mostrado_parcelas == FALSE && $fila['id_rol'] == 2 || $mostrado_parcelas == FALSE && $fila['id_rol'] == 1){
                     $mostrado_parcelas = TRUE;
                     ?>
                         <FORM ACTION='menu.php' method='post'>
@@ -75,7 +82,7 @@ session_start();
                         </FORM>
 
                         <FORM ACTION='menu.php' method='post'>
-                            <input type='submit' name=gestiontrabajos value='GESTIÓN DE TRABAJOS'>
+                            <input type='submit' name=gestiontrabajos value='AÑADIR TRABAJOS'>
                         </FORM>
                     <?php
                 }

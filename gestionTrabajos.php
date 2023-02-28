@@ -1,4 +1,4 @@
-<?php
+//**<?php
 session_start();
 ?>
 <html>
@@ -35,6 +35,9 @@ session_start();
     
         <h1>Añadir Trabajo</h1>
         <FORM ACTION="gestionTrabajos.php" method="post">
+        
+            Nombre Trabajo:<input type="text" value="" name="nombret"/>
+            <br>
             Parcela: <select name="n_parcela[]">
                 <?php
                 $conexion = mysqli_connect($host, $user, $password, $bd) or die("No se puede conectar a la base de datos");
@@ -50,6 +53,7 @@ session_start();
                 mysqli_close($conexion);
                 ?>
             </select>
+            
             <br>
             Tarea:<select name="tarea[]">
                 <?php
@@ -68,7 +72,7 @@ session_start();
         Piloto:<select name="piloto[]">
                 <?php
                 $conexion = mysqli_connect($host, $user, $password, $bd) or die("No se puede conectar a la base de datos");
-                $instruccion = "SELECT * FROM usuario,usuario_rol,roles WHERE usuario.id_usr = usuario_rol.id_rol ".
+                $instruccion = "SELECT * FROM usuario,usuario_rol,roles WHERE usuario.id_usr = usuario_rol.id_usr ".
                 "AND roles.id_rol = usuario_rol.id_rol AND nombre_rol = 'piloto'";
                 $consulta = mysqli_query ($conexion, $instruccion)
                 or die ("Fallo en la consulta buscar usuario");
@@ -90,9 +94,10 @@ session_start();
                 $parcelas = $_POST['n_parcela'];
                 $tareas = $_POST['tarea'];
                 $pilotos = $_POST['piloto'];
+                $nombretrabajo = $_POST['nombret'];
                 
                 foreach ($parcelas as $parcela)
-                $this_parcelas = $parcela;
+                $this_parcela = $parcela;
             
                 foreach ($tareas as $tarea)
                 $this_tarea = $tarea;
@@ -102,11 +107,11 @@ session_start();
                     $conexion = mysqli_connect($host,$user,$password,$bd)
                     or die ("No se puede conectar con el servidor");
 
-                    $instruccion = "insert into trabajo (id_parcela,id_tarea,id_piloto) values "
-                    . "($this_parcela,$this_tarea,$this_piloto)";
+                    $instruccion = "insert into trabajo (id_parcela,id_tarea,id_piloto,nombre_Trabajo) values "
+                    . "($this_parcela,$this_tarea,$this_piloto,'$nombretrabajo')";
 
                     $consulta = mysqli_query ($conexion, $instruccion)
-                    or die (" ".mysqli_error($conexion)." Fallo en la consulta insertar dron ");
+                    or die (" ".mysqli_error($conexion)." Fallo en la consulta insertar trabajo ");
                     mysqli_close ($conexion);  
             }
             
@@ -114,4 +119,4 @@ session_start();
             </form>
                 <a href="menu.php">Volver al menu </a>
     </body>
-</html>
+</html>*/

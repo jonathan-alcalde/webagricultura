@@ -5,6 +5,9 @@ session_start();
     <head>
         <meta charset="UTF-8">
         <title></title>
+        <script src="./js.js"></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+        <link rel="stylesheet" href="./estilos.css">
     </head>
     <body>
         <?php
@@ -34,22 +37,32 @@ session_start();
         ?>   
     
         <h1>Añadir Parcela-</h1>
-        <FORM ACTION="gestionParcelas.php" method="post">
-                nparcela: <input type="text" name="nparcela">
-                <br>
-                municipio: <input type="text" name="municipio">
-                <br>
-                provincia: <input type="text" name="provincia">
-                <br>
-                npoligono: <input type="text" name="npoligono">
-                <br>
-                Fichero json 
+        <FORM id = "addparcela" ACTION="gestionParcelas.php" method="post">
+                Fichero geojson :
                 <INPUT TYPE="hidden" name="max_file_size" value="10240000">
-                <input TYPE="file" size="44" name="geojson">
+                <input id="geolector" TYPE="file" size="44" name="geojson" accept=".geojson">
                 <br>
+                nparcela: <input class="sinfondo" id="nparcela" type="text" name="nparcela" readonly=true>
+                <br>
+                municipio: <input class="sinfondo" id="municipio" type="text" name="municipio" readonly=true>
+                <br>
+                provincia: <input class="sinfondo" id="provincia" type="text" name="provincia" readonly=true>
+                <br>
+                npoligono: <input class="sinfondo" id="npoligono" type="text" name="npoligono" readonly=true>
+                <br>
+                coordenadas: <input class="sinfondo" id="coordenadas" type="text" name="coordenadas" readonly=true>
+                <br>
+                
                 <input type="submit" value="Añadir" name="anadir"/>
-                <input type="submit" value="cancelar" name="cancelar"/>
+                <input type="submit" value="Cancelar" name="cancelar"/>
+                <input type="submit" value="Mostrar Mapa" id="btnMapa" name="mapa"/>
                 <?php
+
+            if(isset($_POST['mapa'])){
+                header('location:mapa.html');
+            }
+       
+
             if(isset($_POST['anadir'])){
                 $correcto = TRUE;
                 
@@ -76,27 +89,16 @@ session_start();
                     $correcto = FALSE;
                     echo "<p>Escribe el nombre de la provincia</p>";
                 }
+                
+                $conexion = mysqli_connect($host, $user, $password, $bd) or die("No se puede conectar a la base de datos");
+                $instruccion = "SELECT id_usr , nombre FROM usuario WHERE username = '$usuario'";
+                $consulta = mysqli_query ($conexion, $instruccion)
+                or die ("Fallo en la consulta buscar usuario dron");
+                while($fila = mysqli_fetch_array($consulta)){
+                    $idusuario =$fila['id_usr'];
+                }
+                mysqli_close($conexion);
 
-                if(is_uploaded_file($_FILES['geojson']['tmp_name']))
-                {
-                    $nombreDirectorio = "geojson/";
-                    $nombreFichero = $_FILES['geojson']['name'];
-    
-                    $nombreCompleto = $nombreDirectorio . $nombreFichero;
-                    if(is_file($nombreCompleto))
-                    {
-                        $idUnico = time();
-                        $nombreFichero  = $idUnico . "-" . $nombreFichero;
-                    }
-                
-    
-                move_uploaded_file($_FILES['geojson']['tmp_name'], $nombreDirectorio . $nombreFichero);
-                }
-                else {
-                    print("No se ha podido subir el fichero\n");
-                    $correcto = FALSE;
-                }
-                
                 $correcto = parcela_registrada($user, $host, $password, $bd, $nparcela);
                 if($correcto == TRUE){
             
@@ -134,7 +136,7 @@ session_start();
                     if(isset($_REQUEST['borrar'])){
                         $id_parcela = $_REQUEST['n_parcela'];
                 foreach ($id_parcela as $parcela)
-                $this_parcela = $dron;
+                $this_parcela = $parcela;
 
                 $conexion = mysqli_connect($host,$user,$password,$bd)
                 or die ("No se puede conectar con el servidor");

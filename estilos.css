@@ -1,0 +1,11 @@
+.sinfondo{
+    border: 0;
+}
+
+/* Mapa Parcelas Estilos */
+
+#map{
+    width: 100%;
+    height: 1000px;
+    background-color: grey;
+}

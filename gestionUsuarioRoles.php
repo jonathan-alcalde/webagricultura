@@ -33,25 +33,7 @@
             
             }
         
-            if(isset($_POST['AsignarRol'])){
-                $id_usuario = $_REQUEST['n_usuario'];
-                $id_rol = $_REQUEST['rol'];
-                foreach ($id_usuario as $usuario)
-                $this_usuario = $usuario;
-                
-                foreach ($id_rol as $rol)
-                $this_rol = $rol;
-                $conexion = mysqli_connect($host,$user,$password,$bd)
-                or die ("No se puede conectar con el servidor");
-                    
-                $instruccion = "DELETE FROM usuario_rol WHERE "
-                ."id_usr = $this_usuario AND id_rol = $this_rol";
-        
-                $consulta = mysqli_query ($conexion, $instruccion)
-                or die ("Fallo al eliminar usuario-rol");
-                mysqli_close ($conexion); 
-                
-            }
+
             if(isset($_POST['borrar'])){
                 $id_usuario = $_REQUEST['n_usuario'];
                 foreach ($id_usuario as $usuario)
