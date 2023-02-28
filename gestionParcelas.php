@@ -40,6 +40,7 @@ session_start();
         <FORM id = "addparcela" ACTION="gestionParcelas.php" method="post">
                 Fichero geojson :
                 <INPUT TYPE="hidden" name="max_file_size" value="10240000">
+<<<<<<< HEAD
                 <input id="geolector" TYPE="file" size="44" name="geojson" accept=".geojson">
                 <br>
                 nparcela: <input class="sinfondo" id="nparcela" type="text" name="nparcela" readonly=true>
@@ -53,6 +54,10 @@ session_start();
                 coordenadas: <input class="sinfondo" id="coordenadas" type="text" name="coordenadas" readonly=true>
                 <br>
                 
+=======
+                <input TYPE="file" size="44" name="geojson">
+                <br>
+>>>>>>> 0afbfd229b230539f22a3e7c4e94fbdba6b6cf19
                 <input type="submit" value="Añadir" name="anadir"/>
                 <input type="submit" value="Cancelar" name="cancelar"/>
                 <input type="submit" value="Mostrar Mapa" id="btnMapa" name="mapa"/>

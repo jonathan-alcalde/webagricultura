@@ -1,7 +1,10 @@
 <?php
+<<<<<<< HEAD
     function getData(){
         return json_encode(file_get_contents(__DIR__.'/'),true);
     }
+=======
+>>>>>>> 0afbfd229b230539f22a3e7c4e94fbdba6b6cf19
 
 function conexion() {
 

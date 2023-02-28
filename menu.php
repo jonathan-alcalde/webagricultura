@@ -74,7 +74,12 @@ session_start();
                         </FORM>
                     <?php
                 }
+<<<<<<< HEAD
                 if($mostrado_parcelas == FALSE && $fila['id_rol'] == 2 || $mostrado_parcelas == FALSE && $fila['id_rol'] == 1){
+=======
+
+                if($mostrado_parcelas == FALSE && $fila['id_rol'] == 2 || $mostrado_parcelas == FALSE && $fila['id_rol'] == 1 && $fila['id_rol'] == 3){
+>>>>>>> 0afbfd229b230539f22a3e7c4e94fbdba6b6cf19
                     $mostrado_parcelas = TRUE;
                     ?>
                         <FORM ACTION='menu.php' method='post'>
